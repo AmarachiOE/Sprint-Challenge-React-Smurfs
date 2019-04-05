@@ -42,6 +42,20 @@ class App extends Component {
       });
   };
 
+  // DELETE data
+  deleteSmurf = id => {
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+      .then(res => {
+        console.log(res.data);
+        this.setState({ smurfs:res.data });
+        // redirect to home
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err.resolve);
+      })
+  };
+
   render() {
     return (
       <div className="App">
@@ -56,7 +70,7 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={props => <Smurfs {...props} smurfs={this.state.smurfs} />}
+          render={props => <Smurfs {...props} smurfs={this.state.smurfs} deleteSmurf={this.deleteSmurf}/>}
         />
 
         <Route
