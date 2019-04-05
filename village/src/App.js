@@ -16,6 +16,7 @@ class App extends Component {
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
 
+  // GET data
   componentDidMount(){
     axios.get("http://localhost:3333/smurfs")
       .then(res => {
@@ -23,11 +24,26 @@ class App extends Component {
         this.setState({ smurfs:res.data});
       });
   };
-  
+
+  // POST data
+  addSmurf = (event, smurf) => {
+    event.preventDefault();
+    axios.post("http://localhost:3333/smurfs", smurf)
+      .then(res => {
+        console.log(res.data);
+        this.setState({ smurfs:res.data });
+        alert('Congrats! Welcome to the village!');
+        // redirect to home
+      })
+      .catch(err => {
+        console.log(err.resolve)
+      })
+  };
+
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm addSmurf={this.addSmurf}/>
         <Smurfs smurfs={this.state.smurfs} />
       </div>
     );
