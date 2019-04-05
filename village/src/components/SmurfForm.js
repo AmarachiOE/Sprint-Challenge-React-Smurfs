@@ -64,7 +64,9 @@ class SmurfForm extends Component {
             name="height"
             type="string"
           />
-          <button type="submit" className="btn form-btn">Add Smurf to Village</button>
+          <button type="submit" className="btn form-btn">
+            Add Smurf to Village
+          </button>
         </form>
       </div>
     );
