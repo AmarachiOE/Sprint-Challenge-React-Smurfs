@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class SmurfForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       smurf: {
-       name: '',
-        age: '',
-        height: '' 
+        name: "",
+        age: "",
+        height: ""
       }
     };
   }
@@ -15,27 +15,27 @@ class SmurfForm extends Component {
   addSmurf = event => {
     event.preventDefault();
     // add code to create the smurf using the api
-    this.props.addSmurf(event, this.state.smurf)
+    // invoking addSmurf function from App.js
+    this.props.addSmurf(event, this.state.smurf);
 
+    // clears from after submission
     this.setState({
       smurf: {
-        name: '',
-        age: '',
-        height: ''
+        name: "",
+        age: "",
+        height: ""
       }
-
     });
-  }
+  };
 
   handleInputChange = event => {
     event.persist();
     this.setState(prevState => ({
       smurf: {
-          ...prevState.smurf,
-          [event.target.name]: event.target.value
+        ...prevState.smurf,
+        [event.target.name]: event.target.value
       }
-  }));
-    //this.setState({ [e.target.name]: e.target.value });
+    }));
   };
 
   render() {
